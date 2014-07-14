@@ -30,7 +30,7 @@
 #include "FWCore/Framework/interface/Run.h"
 
 
-
+#include "FWCore/Framework/interface/MakerMacros.h"
 
 
 
@@ -639,3 +639,5 @@ void PhiSymmetryCalibration::endLuminosityBlock(edm::LuminosityBlock const& lb, 
   eventsinlb_=0;
 
 }
+
+DEFINE_FWK_MODULE(PhiSymmetryCalibration);
