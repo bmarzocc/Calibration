@@ -18,6 +18,8 @@
 #include <fstream>
 #include "boost/filesystem/operations.hpp"
 
+#include "FWCore/Framework/interface/MakerMacros.h"
+
 using namespace std;
 
 
@@ -1466,3 +1468,5 @@ void  PhiSymmetryCalibration_step2::outResidHistos(){
 
   f.Close(); 
 }
+
+DEFINE_FWK_MODULE(PhiSymmetryCalibration_step2);
