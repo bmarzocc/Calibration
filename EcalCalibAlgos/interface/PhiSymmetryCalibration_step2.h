@@ -1,3 +1,7 @@
+#ifndef Calibration_EcalCalibAlgos_PhiSymmetryCalibration_step2_h
+#define Calibration_EcalCalibAlgos_PhiSymmetryCalibration_step2_h
+
+
 #include "Calibration/EcalCalibAlgos/interface/EcalGeomPhiSymHelper.h"
 #include "CondFormats/EcalObjects/interface/EcalIntercalibConstants.h"
 #include "FWCore/Framework/interface/EDAnalyzer.h"
@@ -105,3 +109,5 @@ class PhiSymmetryCalibration_step2 :  public edm::EDAnalyzer
   std::vector<TH2F*> correl_endc_histos;
 
 };
+
+#endif
