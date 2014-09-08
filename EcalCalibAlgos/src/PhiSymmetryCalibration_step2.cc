@@ -838,7 +838,7 @@ t << "NHTT_barl_" << ieta+1 << "_" << sign;
   float NHTTcry_EE[kEndcWedgesX][kEndcWedgesY][kSides];
   float TTNHsum_EE[kEndcWedgesX][kEndcWedgesY][kSides];
   float TTNBC_EE[kEndcWedgesX][kEndcWedgesY][kSides];
-  //float NBCTTcry_EE[kEndcWedgesX][kEndcWedgesY][kSides];
+  float NBCTTcry_EE[kEndcWedgesX][kEndcWedgesY][kSides];
 
   TH2F StatusEEplus_before("StatusEEplus_before", "EE+ channel status before TT selection",100,0,100,100,0,100);
   TH2F StatusEEplus_after("StatusEEplus_after", "EE+ channel status after TT selection",100,0,100,100,0,100);
@@ -901,7 +901,7 @@ t << "NHTT_barl_" << ieta+1 << "_" << sign;
 	    for(int j=0; j<5; j++)
 	      {  
 		NHTTcry_EE[ix-j][iy][sign]=NHr;
-		//NBCTTcry_EE[ix-j][iy][sign]=NBCr;
+		NBCTTcry_EE[ix-j][iy][sign]=NBCr;
 	      }
 	       
 	  }
@@ -955,14 +955,14 @@ t << "NHTT_barl_" << ieta+1 << "_" << sign;
       else  StatusEEplus_after.Fill(ix,iy,0);
 
     
-      if(e_.goodCell_endc[ix][iy][1] && NBCTTcry[ix][iy][1] < 25) // if all the xtal is bad skips
+      if(e_.goodCell_endc[ix][iy][1] && NBCTTcry_EE[ix][iy][1] < 25) // if all the xtal is bad skips
 	{
-	  nplus = NHTTcry_EE[ix][iy][1]*25./(25.-NBCTTcry[ix][iy][1]);
+	  nplus = NHTTcry_EE[ix][iy][1]*25./(25.-NBCTTcry_EE[ix][iy][1]);
 	  NHEEplus_map.Fill(ix, iy, nplus);
 	}   
-      if(e_.goodCell_endc[ix][iy][0] && NBCTTcry[ix][iy][0] < 25 ) // if all the xtal is bad skips
+      if(e_.goodCell_endc[ix][iy][0] && NBCTTcry_EE[ix][iy][0] < 25 ) // if all the xtal is bad skips
 	{
-	  nminus = NHTTcry_EE[ix][iy][0]*25./(25.-NBCTTcry[ix][iy][0]);
+	  nminus = NHTTcry_EE[ix][iy][0]*25./(25.-NBCTTcry_EE[ix][iy][0]);
 	  NHEEminus_map.Fill(ix, iy, nminus);
 	}
 
@@ -995,15 +995,15 @@ t << "NHTT_barl_" << ieta+1 << "_" << sign;
       if(!e_.goodCell_endc[ix][iy][0])
 	EEminus_killed.Fill(ix, iy, -1);
 
-      if( NBCTTcry[ix][iy][1] > 24 ||   NBCTTcry[ix][iy][0] > 24) 
+      if( NBCTTcry_EE[ix][iy][1] > 24 ||   NBCTTcry_EE[ix][iy][0] > 24) 
 	{ 
           NHEEratio_map.Fill(ix,iy,-1);
 	  NHEEsigma_map.Fill(ix,iy,-101);
 	  continue;
 	}
       
-      float nplus = NHTTcry_EE[ix][iy][1]*25./(25.-NBCTTcry[ix][iy][1]);
-      float nminus = NHTTcry_EE[ix][iy][0]*25./(25.-NBCTTcry[ix][iy][0]);
+      float nplus = NHTTcry_EE[ix][iy][1]*25./(25.-NBCTTcry_EE[ix][iy][1]);
+      float nminus = NHTTcry_EE[ix][iy][0]*25./(25.-NBCTTcry_EE[ix][iy][0]);
 
       if(nplus<1 || nminus < 1 )
 	{ 
